@@ -6,10 +6,11 @@ import (
 	_ "github.com/lib/pq"
 )
 
-type Menu struct {
+type Gopher struct {
 	Id    int
 	Name  string
-	Price int
+	Img   string
+	Count int
 }
 
 // 1. connect to Database
@@ -22,15 +23,16 @@ func ConnectDB() (db *sql.DB) {
 	return db
 
 	//INSERT
-	// var menuID string
+	// var gopherID string
 	// id := 1
-	// menu := "coffee"
-	// price := 350
-	// err = Db.QueryRow("INSERT INTO menu(id, manu, price) VALUES($1,$2,$3) RETURNING id", id, menu, price).Scan(&menuID)
+	// name := "coffee"
+	// img := "main.png"
+	// count := 0
+	// err = db.QueryRow("INSERT INTO gopher(id, name, img, count) VALUES($1,$2,$3,$4) RETURNING id", id, name, img, count).Scan(&gopherID)
 
 	// if err != nil {
 	// 	fmt.Println(err)
 	// }
 
-	// fmt.Println(menuID)
+	// fmt.Println(gopherID)
 }

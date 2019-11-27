@@ -9,39 +9,34 @@ import (
 )
 
 // 2. get data
-func GetAllMenu(c *gin.Context) {
+func GetAllGopher(c *gin.Context) {
 	db := model.ConnectDB()
-	// // err = Db.QueryRow("SELECT id, menu, price FROM menu where id = $1", id).Scan(&menu.Id, &menu.Name, &menu.Price)
-	// menu, err := Db.Query("SELECT * FROM menu)
-	// return menu
 
 	// SELECT ALL DATA
-	result, err := db.Query("SELECT * FROM menu")
+	result, err := db.Query("SELECT * FROM gopher")
 	if err != nil {
 		panic(err.Error())
 	}
 
-	menus := []model.Menu{}
+	gophers := []model.Gopher{}
 
 	for result.Next() {
-		menu := model.Menu{}
+		gopher := model.Gopher{}
 		var id int
 		var name string
-		var price int
+		var img string
+		var count int
 
-		err = result.Scan(&id, &name, &price)
+		err = result.Scan(&id, &name, &img, &count)
 		if err != nil {
 			panic(err.Error())
 		}
-		menu.Id = id
-		menu.Name = name
-		menu.Price = price
-		menus = append(menus, menu)
-		// fmt.Println("id | name | price")
-		// fmt.Printf("%3v | %8v  | %6v\n", id, name, price)
+		gopher.Id = id
+		gopher.Name = name
+		gopher.Img = img
+		gopher.Count = count
+		gophers = append(gophers, gopher)
 	}
-	fmt.Println(menus)
-	c.JSON(http.StatusOK, gin.H{"menus": menus})
-	// result.Close()
-	// return
+	fmt.Println(gophers)
+	c.JSON(http.StatusOK, gin.H{"gophers": gophers})
 }
