@@ -2,6 +2,7 @@ package model
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/lib/pq"
 )
@@ -21,18 +22,48 @@ func ConnectDB() (db *sql.DB) {
 	}
 
 	return db
+}
 
-	//INSERT
-	// var gopherID string
-	// id := 1
-	// name := "coffee"
-	// img := "main.png"
-	// count := 0
-	// err = db.QueryRow("INSERT INTO gopher(id, name, img, count) VALUES($1,$2,$3,$4) RETURNING id", id, name, img, count).Scan(&gopherID)
+// 2.SELECT ALL DATA
+func GetALL() []Gopher {
+	gophers := []Gopher{}
+	db := ConnectDB()
 
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
+	result, err := db.Query("SELECT * FROM gopher ORDER BY id")
+	if err != nil {
+		panic(err.Error())
+	}
 
-	// fmt.Println(gopherID)
+	for result.Next() {
+		gopher := Gopher{}
+		var id int
+		var name string
+		var img string
+		var count int
+
+		err = result.Scan(&id, &name, &img, &count)
+		if err != nil {
+			panic(err.Error())
+		}
+		gopher.Id = id
+		gopher.Name = name
+		gopher.Img = img
+		gopher.Count = count
+		gophers = append(gophers, gopher)
+	}
+	defer db.Close()
+
+	fmt.Println(gophers)
+	return gophers
+}
+
+// 3.Update Gopher's like count
+func PostCount(reqCnt int, reqId int) {
+	db := ConnectDB()
+
+	err := db.QueryRow("UPDATE gopher SET count = $1 WHERE id = $2", reqCnt, reqId)
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
 }
