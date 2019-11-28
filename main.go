@@ -1,18 +1,30 @@
 package main
 
 import (
-	"github.com/eriko/to-do/src/controller"
+	"net/http"
+
+	"github.com/eriko/gophers/src/controller"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	// start up serve
+	serve()
+}
+
+func serve() {
 	router := gin.Default()
 
 	// for CORS
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:8080"}
+	// ルーターの設定
+	// URLへのアクセスに対して静的ページを返す
+	// router.StaticFS("/gophers", http.Dir("../dist"))
+	router.StaticFS("/gogo", http.Dir("./dist"))
+
+	config.AllowOrigins = []string{"https://go-go-golang.herokuapp.com", "http://localhost:8081"}
 	// config.AllowOrigins == []string{"http://google.com", "http://facebook.com"}
 	router.Use(cors.New(config))
 
@@ -23,7 +35,7 @@ func main() {
 		v1.POST("/gophers", controller.UpdataGopher)
 	}
 
-	router.GET("/", controller.IndexGET)
+	// router.GET("/", controller.IndexGET)
 
 	// router.GET("/someGet", getting)
 	// router.PATCH("/somePost", posting)

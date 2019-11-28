@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/eriko/to-do/src/model"
-	db "github.com/eriko/to-do/src/model"
+	"github.com/eriko/gophers/src/model"
+	db "github.com/eriko/gophers/src/model"
 	"github.com/gin-gonic/gin"
 )
 

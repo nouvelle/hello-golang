@@ -8,11 +8,11 @@
     </div>
     <div class="imgWrap">
       <div class="imgdom" v-for="(item, index) in imageData" v-bind:key="index">
-        <img :src="'img/'+item.Img" alt="gopher" class="image" />
+        <img :src="'static/img/'+item.Img" alt="gopher" class="image" />
         <div class="name">{{item.Name}}</div>
         <div class="likeWrap">
           <div v-on:click="addCount(item.Id)">
-            <img src="img/good.png" alt="good" class="good" />
+            <img src="static/img/good.png" alt="good" class="good" />
           </div>
           <div class="balloon">{{item.Count}}</div>
         </div>
@@ -22,42 +22,42 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-  name: "app",
+  name: 'app',
   data: () => ({
     imageData: [],
     info: null
   }),
-  mounted() {
-    this.getGopher();
+  mounted () {
+    this.getGopher()
   },
   methods: {
-    getGopher() {
+    getGopher () {
       axios
-        .get("http://localhost:8081/api/v1/gophers")
+        .get('/api/v1/gophers')
         .then(response => {
-          this.imageData = response.data.gophers;
+          this.imageData = response.data.gophers
         })
-        .catch(error => (this.info = error));
+        .catch(error => (this.info = error))
     },
-    addCount(id) {
+    addCount (id) {
       return this.imageData.filter(item => {
         if (item.Id === id) {
-          item.Count++;
+          item.Count++
           axios
-            .post("http://localhost:8081/api/v1/gophers", {
+            .post('/api/v1/gophers', {
               Id: item.Id,
               Count: item.Count
             })
-            .catch(error => (this.info = error));
-          return item.Count;
+            .catch(error => (this.info = error))
+          return item.Count
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style>
