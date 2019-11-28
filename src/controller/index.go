@@ -8,5 +8,5 @@ import (
 
 // IndexGET displays application index page
 func IndexGET(c *gin.Context) {
-	c.String(http.StatusOK, "GO! GO! GOLANG!!")
+	c.String(http.StatusOK, "Please access /gogo  GO! GO! GOLANG!!")
 }

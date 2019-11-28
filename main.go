@@ -36,7 +36,7 @@ func serve() {
 		v1.POST("/gophers", controller.UpdataGopher)
 	}
 
-	// router.GET("/", controller.IndexGET)
+	router.GET("/", controller.IndexGET)
 	// router.Run(":8081")
 
 	router.Run(":" + os.Getenv("PORT"))
