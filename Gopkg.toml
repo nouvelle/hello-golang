@@ -31,5 +31,4 @@
 
 [metadata.heroku]
   root-package = "github.com/eriko/gophers"
-  install = [ ".", "./cmd/..." ]
   ensure = "true"
