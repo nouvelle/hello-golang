@@ -20,15 +20,15 @@ func main() {
 	v1 := router.Group("/api/v1")
 	{
 		v1.GET("/gophers", controller.GetAllGopher)
+		v1.POST("/gophers", controller.UpdataGopher)
 	}
 
 	router.GET("/", controller.IndexGET)
 
 	// router.GET("/someGet", getting)
-	// router.POST("/somePost", posting)
+	// router.PATCH("/somePost", posting)
 	// router.PUT("/somePut", putting)
 	// router.DELETE("/someDelete", deleting)
-	// router.PATCH("/somePatch", patching)
 	// router.HEAD("/someHead", head)
 	// router.OPTIONS("/someOptions", options)
 

@@ -6,10 +6,10 @@
         <img :src="'img/'+item.Img" alt="gopher" class="image" />
         <div class="name">{{item.Name}}</div>
         <div class="likeWrap">
-          <div>
+          <div v-on:click="addCount(item.Id)">
             <img src="img/good.png" alt="good" class="good" />
           </div>
-          <div class="balloon">12</div>
+          <div class="balloon">{{item.Count}}</div>
         </div>
       </div>
     </div>
@@ -33,12 +33,26 @@ export default {
       axios
         .get("http://localhost:8081/api/v1/gophers")
         .then(response => {
-          // this.images = response.gophers.map(item => item.img);
           this.imageData = response.data.gophers;
-          // this.imageData = response.data.gophers.map(item => "img/" + item.Img);
-          // this.names = response.data.gophers.map(item => item.Name);
         })
         .catch(error => (this.info = error));
+    },
+    addCount(id) {
+      return this.imageData.filter(item => {
+        if (item.Id === id) {
+          item.Count++;
+          axios
+            .post("http://localhost:8081/api/v1/gophers", {
+              Id: id,
+              Count: item.Count
+            })
+            .then(response => {
+              this.imageData = response.data.gophers;
+            })
+            .catch(error => (this.info = error));
+          return item.Count;
+        }
+      });
     }
   }
 };
