@@ -1,8 +1,10 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 
+	"github.com/eriko/to-do/src/model"
 	db "github.com/eriko/to-do/src/model"
 	"github.com/gin-gonic/gin"
 )
@@ -25,11 +27,18 @@ func UpdataGopher(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
 	reqId := post.Id
 	reqCnt := post.Count
 
-	db.PostCount(reqCnt, reqId)
+	// db.PostCount(reqCnt, reqId)
+
+	db := model.ConnectDB()
+	err := db.QueryRow("UPDATE gopher SET count = $1 WHERE id = $2", reqCnt, reqId)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	c.JSON(http.StatusOK, gin.H{"status": "success count up"})
 }
 

@@ -57,7 +57,7 @@ func GetALL() []Gopher {
 	return gophers
 }
 
-// 3.Update Gopher's like count
+// 3.Update Gopher's like count (Don't use it now)
 func PostCount(reqCnt int, reqId int) {
 	db := ConnectDB()
 

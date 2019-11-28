@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     <h1 class="title">Let's vote your favorite Gopher!!</h1>
+    <div class="gopher"></div>
+    <div class="link">
+      You can create your own Gopher from
+      <a href="https://gopherize.me/" target="_about">this site!</a>
+    </div>
     <div class="imgWrap">
       <div class="imgdom" v-for="(item, index) in imageData" v-bind:key="index">
         <img :src="'img/'+item.Img" alt="gopher" class="image" />
@@ -43,11 +48,8 @@ export default {
           item.Count++;
           axios
             .post("http://localhost:8081/api/v1/gophers", {
-              Id: id,
+              Id: item.Id,
               Count: item.Count
-            })
-            .then(response => {
-              this.imageData = response.data.gophers;
             })
             .catch(error => (this.info = error));
           return item.Count;
@@ -79,6 +81,10 @@ body {
 }
 .title {
   padding-top: 30px;
+  margin-bottom: 3px;
+}
+.link {
+  margin-bottom: 30px;
 }
 .imgWrap {
   margin: 0 auto;
@@ -137,5 +143,19 @@ body {
   border: 5px solid transparent;
   border-right: 5px solid #a2ecff;
   z-index: 0;
+}
+
+.gopher {
+  background: url(../assets/standard.png) no-repeat;
+  width: 45px;
+  height: 45px;
+  animation: gogo 1s steps(2) infinite;
+  display: inline-block;
+}
+
+@keyframes gogo {
+  to {
+    background-position: -90px 0;
+  }
 }
 </style>

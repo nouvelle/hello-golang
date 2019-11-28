@@ -7,7 +7,9 @@ VALUES
   (3, 'fraGopher', 'fraGopher.png', 0),
   (4, 'iGopher', 'iGopher.png', 0),
   (5, 'dereGopher', 'dereGopher.png', 0),
-  (6, 'heartGopher', 'heartGopher.png', 0);
+  (6, 'naotoGopher', 'naotoGopher.png', 0),
+  (7, 'feliGopher', 'feliGopher.png', 0),
+  (8, 'heartGopher', 'heartGopher.png', 0);
 -- +goose Down
   -- SQL section 'Down' is executed when this migration is rolled back
 DELETE FROM gopher;
