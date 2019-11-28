@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/eriko/gophers/src/controller"
 
@@ -36,13 +37,7 @@ func serve() {
 	}
 
 	// router.GET("/", controller.IndexGET)
+	// router.Run(":8081")
 
-	// router.GET("/someGet", getting)
-	// router.PATCH("/somePost", posting)
-	// router.PUT("/somePut", putting)
-	// router.DELETE("/someDelete", deleting)
-	// router.HEAD("/someHead", head)
-	// router.OPTIONS("/someOptions", options)
-
-	router.Run(":8081")
+	router.Run(":" + os.Getenv("PORT"))
 }
