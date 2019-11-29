@@ -4,17 +4,19 @@
     <div class="gopher"></div>
     <div class="link">
       You can create your own Gopher from
-      <a href="https://gopherize.me/" target="_about">this site!</a>
+      <a href="https://gopherize.me/" target="_about" class="golink"
+        >this site!</a
+      >
     </div>
     <div class="imgWrap">
       <div class="imgdom" v-for="(item, index) in imageData" v-bind:key="index">
-        <img :src="'static/img/'+item.Img" alt="gopher" class="image" />
-        <div class="name">{{item.Name}}</div>
+        <img :src="'static/img/' + item.Img" alt="gopher" class="image" />
+        <div class="name">{{ item.Name }}</div>
         <div class="likeWrap">
           <div v-on:click="addCount(item.Id)">
             <img src="static/img/good.png" alt="good" class="good" />
           </div>
-          <div class="balloon">{{item.Count}}</div>
+          <div class="balloon">{{ item.Count }}</div>
         </div>
       </div>
     </div>
@@ -86,6 +88,12 @@ body {
 .link {
   margin-bottom: 30px;
 }
+.golink {
+  color: #0085a6;
+}
+.golink:visited {
+  color: #0085a6;
+}
 .imgWrap {
   margin: 0 auto;
   padding: 5px 30px;
@@ -94,7 +102,7 @@ body {
   flex-wrap: wrap;
 }
 .imgdom {
-  margin-right: 10px;
+  margin-right: 25px;
   display: flex;
   flex-direction: column;
 }

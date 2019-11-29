@@ -20,13 +20,11 @@ func serve() {
 
 	// for CORS
 	config := cors.DefaultConfig()
-	// ルーターの設定
-	// URLへのアクセスに対して静的ページを返す
-	// router.StaticFS("/gophers", http.Dir("../dist"))
+
+	// for router
 	router.StaticFS("/gogo", http.Dir("./dist"))
 
 	config.AllowOrigins = []string{"https://go-go-golang.herokuapp.com", "http://localhost:8081"}
-	// config.AllowOrigins == []string{"http://google.com", "http://facebook.com"}
 	router.Use(cors.New(config))
 
 	// API namespace
@@ -36,8 +34,8 @@ func serve() {
 		v1.POST("/gophers", controller.UpdataGopher)
 	}
 
-	router.GET("/", controller.IndexGET)
-	// router.Run(":8081")
+	// router.GET("/", controller.IndexGET)
+	router.Run(":8081")
 
 	router.Run(":" + os.Getenv("PORT"))
 }

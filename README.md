@@ -1,21 +1,22 @@
-# gophers
+**This was created during my time as a student at [Code Chrysalis](https://www.codechrysalis.io/).**
 
-> A Vue.js project
+# Let's vote your favorite Gopher!!
 
-## Build Setup
+![image](https://user-images.githubusercontent.com/5979966/69848115-6c660b80-12bc-11ea-9df4-a84e7bef7b3a.gif)
 
-``` bash
-# install dependencies
-npm install
+1. [Technology used](#Technology%20used)
+1. [Contributing](#Contributing)
+1. [License](#License)
 
-# serve with hot reload at localhost:8080
-npm run dev
+# Technology used
 
-# build for production with minification
-npm run build
+This software uses the following open source packages:
+![image](https://user-images.githubusercontent.com/5979966/69848198-b5b65b00-12bc-11ea-9834-a93d521a1891.png)
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+# Contributing
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Pull requests are welcome!! 😊
+
+# License
+
+[MIT](https://choosealicense.com/licenses/mit/)
